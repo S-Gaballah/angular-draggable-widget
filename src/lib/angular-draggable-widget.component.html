@@ -1,0 +1,35 @@
+<div class="widget" cdkDrag [class.widgetMinimized]="isMinimized && !isSmallScreen" *ngIf="isOpened"
+    [style.top]="xPosition" [style.left]="yPosition" [style.z-index]="zIndex"
+    [cdkDragDisabled]="isSmallScreen || !isDraggable" (cdkDragStarted)="dragStart()" (cdkDragEnded)="dragEnd()"
+    (cdkDragExited)="dragExited()" (cdkDragReleased)="dragReleased()" (cdkDragMoved)="dragMoved()">
+
+    <div *ngIf="isMinimized && !isSmallScreen" class="widgetIcon" (dblclick)="isMinimized = !isMinimized">
+        <div>{{title}}</div>
+    </div>
+
+    <div *ngIf="!isMinimized || isSmallScreen">
+        <div class="header" cdkDragHandle>
+            <img *ngIf="!!iconImageSrc" class="image" [src]="safeIconImageSrc"
+                (dblclick)="isMinimized = !isMinimized">
+
+            <div class="title" style.left="{{!(!!iconImageSrc) && '5px'}}"
+                >{{title}}</div>
+
+            <div class="iconsContainer">
+                <i *ngIf="isMinimizable" class="material-icons close" (click)="isMinimized = !isMinimized"
+                    matTooltip="{{ isMinimized ? 'maximize'  : 'minimize'}}">
+                    {{isMinimized ? 'add' : 'remove'}}
+                </i>
+
+                <i class="material-icons close" (click)="close($event)" matTooltip="close">
+                    cancel
+                </i>
+            </div>
+        </div>
+
+        <div class="content" *ngIf="!isMinimized">
+            <ng-content></ng-content>
+        </div>
+    </div>
+
+</div>
