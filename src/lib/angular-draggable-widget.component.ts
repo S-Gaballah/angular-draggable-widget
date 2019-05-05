@@ -15,9 +15,8 @@ export class AngularDraggableWidgetComponent implements OnChanges, OnInit {
   @Output() onDragStart = new EventEmitter();
   @Output() onDragEnd = new EventEmitter();
   @Output() onDragMoved = new EventEmitter();
-  @Output() onDragExited = new EventEmitter();
   @Output() onDragReleased = new EventEmitter();
-  @Output() onImageDClicked = new EventEmitter();
+  @Output() onWidgetDClicked = new EventEmitter();
 
 
   @Input() isOpened: boolean = false;
@@ -86,14 +85,11 @@ export class AngularDraggableWidgetComponent implements OnChanges, OnInit {
     this.onDragMoved.emit(event);
   }
 
-  imageDClicked(event) {
+  widgetDClicked(event) {
     this.isMinimized = !this.isMinimized;
-    this.onImageDClicked.emit(event);
+    this.onWidgetDClicked.emit(event);
   }
 
-  dragExited(event) {
-    this.onDragExited.emit(event);
-  }
 
   dragReleased(event) {
     this.onDragReleased.emit(event);

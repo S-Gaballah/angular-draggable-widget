@@ -1,10 +1,10 @@
 <div class="widget" cdkDrag [class.widgetMinimized]="isMinimized && !isSmallScreen" *ngIf="isOpened"
     [style.top]="xPosition" [style.left]="yPosition" [style.z-index]="zIndex"
-    [cdkDragDisabled]="isSmallScreen || !isDraggable" (cdkDragStarted)="dragStart($event)" (cdkDragEnded)="dragEnd($event)"
-    (cdkDragExited)="dragExited($event)" (cdkDragReleased)="dragReleased($event)" (cdkDragMoved)="dragMoved($event)">
+    [cdkDragDisabled]="isSmallScreen || !isDraggable" (cdkDragStarted)="dragStart($event)"
+    (cdkDragEnded)="dragEnd($event)" (cdkDragReleased)="dragReleased($event)" (cdkDragMoved)="dragMoved($event)">
 
-    <div *ngIf="isMinimized && !isSmallScreen" class="widgetIcon" (dblclick)="imageDClicked($event)">
-            <img *ngIf="!!iconImageSrc"  [src]="safeIconImageSrc">
+    <div *ngIf="isMinimized && !isSmallScreen" class="widgetAsIcon" (dblclick)="widgetDClicked($event)">
+        <img *ngIf="!!iconImageSrc" [src]="safeIconImageSrc">
         <div *ngIf="!(!!iconImageSrc)">{{title}}</div>
     </div>
 
@@ -12,16 +12,15 @@
         <div class="header" cdkDragHandle>
             <img *ngIf="!!iconImageSrc" class="image" [src]="safeIconImageSrc">
 
-            <div class="title" style.left="{{!(!!iconImageSrc) && '5px'}}"
-                >{{title}}</div>
+            <div class="title" style.left="{{!(!!iconImageSrc) && '5px'}}">{{title}}</div>
 
             <div class="iconsContainer">
-                <i *ngIf="isMinimizable" class="material-icons close" (click)="widgetMinimized($event)"
+                <i *ngIf="isMinimizable" class="material-icons headerIcon" (click)="widgetMinimized($event)"
                     matTooltip="{{ isMinimized ? 'maximize'  : 'minimize'}}">
                     {{isMinimized ? 'add' : 'remove'}}
                 </i>
 
-                <i class="material-icons close" (click)="close($event)" matTooltip="close">
+                <i class="material-icons headerIcon" (click)="close($event)" matTooltip="close">
                     cancel
                 </i>
             </div>
