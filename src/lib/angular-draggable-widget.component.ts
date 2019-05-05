@@ -11,6 +11,7 @@ export class AngularDraggableWidgetComponent implements OnChanges, OnInit {
 
   @Output() onOpen = new EventEmitter();
   @Output() onClose = new EventEmitter();
+  @Output() onMinimize = new EventEmitter();
   @Output() onDragStart = new EventEmitter();
   @Output() onDragEnd = new EventEmitter();
   @Output() onDragMoved = new EventEmitter();
@@ -62,45 +63,50 @@ export class AngularDraggableWidgetComponent implements OnChanges, OnInit {
   }
 
   ngOnChanges(event: SimpleChanges) {
-    if (this.isOpened) {
+    if (event.isOpened) {
       let widgets: HTMLCollectionOf<Element> = document.getElementsByClassName("widget");
       if (event.isOpened.currentValue == true) {
         this.zIndex = this.zIndex || widgets.length;
         this.yPosition = this.yPosition || `${Math.floor(Math.random() * 40) + 20}%`;
         this.xPosition = this.xPosition || `${Math.floor(Math.random() * 30) + 15}%`;
-        this.onOpen.emit();
+        this.onOpen.emit(event.isOpened.currentValue);
       }
     }
   }
 
-  dragStart() {
-    this.onDragStart.emit();
+  dragStart(event) {
+    this.onDragStart.emit(event);
   }
 
-  dragEnd() {
-    this.onDragEnd.emit();
+  dragEnd(event) {
+    this.onDragEnd.emit(event);
   }
 
-  dragMoved() {
-    this.onDragMoved.emit();
+  dragMoved(event) {
+    this.onDragMoved.emit(event);
   }
 
-  imageDClicked() {
+  imageDClicked(event) {
     this.isMinimized = !this.isMinimized;
-    this.onImageDClicked.emit();
+    this.onImageDClicked.emit(event);
   }
 
-  dragExited() {
-    this.onDragExited.emit();
+  dragExited(event) {
+    this.onDragExited.emit(event);
   }
 
-  dragReleased() {
-    this.onDragReleased.emit();
+  dragReleased(event) {
+    this.onDragReleased.emit(event);
   }
 
   close(event) {
     this.isOpened = false;
     this.onClose.emit(event);
+  }
+
+  widgetMinimized(event){
+    this.isMinimized = !this.isMinimized;
+    this.onMinimize.emit(event);
   }
 }
 
