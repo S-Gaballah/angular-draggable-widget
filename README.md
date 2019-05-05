@@ -20,7 +20,7 @@ yarn add angular-draggable-widget
 
 ### SystemJs
 
-add to systemjs.config.js
+>add to `systemjs.config.js`
 
 ``` js
 'angular-draggable-widget': 'node_modules/angular-draggable-widget/bundles/angular-draggable-widget.umd.min.js',
@@ -28,10 +28,9 @@ add to systemjs.config.js
 
 ## Usage
 
+>Import `AngularDraggableWidgetModule` in your `AppModule`
 
-Import `AngularDraggableWidgetModule` in your `AppModule`
-
-``` typescript
+``` ts
 import { AngularDraggableWidgetModule } from 'angular-draggable-widget';
 
 @NgModule({
@@ -46,7 +45,7 @@ import { AngularDraggableWidgetModule } from 'angular-draggable-widget';
 export class AppModule {}
 ```
 
-and then in `html` template
+>and then in `html` template
 
 ```html
 <draggable-widget
@@ -57,18 +56,63 @@ and then in `html` template
    xPosition="25px"
    yPosition="50px"
    [zIndex]="2"
-   iconImageSrc="../assets/logo.png">
+   iconImageSrc="../assets/logo.png"
+   (onClose)="isOpened = false">
     Add your widget content here
   </draggable-widget>
 ```
 
-| property        | desc           | default value  | type |
-| :-------------|----------------------- | -----| -----
-| isOpened      | show/hide widget         | false| boolean|
-| isDraggable   | Enable/disable drag      | true |boolean|
-| isMinimizable | minimize/maximize widget | true |boolean|
-| title         | widget title             | Title| string|
-| xPosition     | inital top position in px or %     | dynamic | string|
-| yPosition     | inital left position in px or %    | dynamic | string|
-| zIndex        | widget order between other widgets | dynamic| number|
-| iconImageSrc  | widget icon image path             | | string|
+## Events, properties, and styling
+
+### Events
+
+| Event            | Description                              |
+|:-----------------|------------------------------------------|
+| onOpen           | when the widget opened                   |
+| onClose          | when the sidget closed                   |
+| onMinimize       | when the widget minimized                |
+| onDragStart      | when widget drag starts                  |
+| onDragEnd        | when widget drag stops                   |
+| onDragMoved      | while the widget is dragging             |
+| onDragReleased   | when the widget drag has released        |
+| onWidgetDClicked | when the minimized widget double clicked |
+
+### Properties
+
+| Property      | Description                        | Default value | type    |
+|:--------------|------------------------------------|---------------|---------|
+| isOpened      | show/hide widget                   | false         | boolean |
+| isDraggable   | Enable/disable drag                | true          | boolean |
+| isMinimizable | minimize/maximize widget           | true          | boolean |
+| title         | widget title                       | Title         | string  |
+| xPosition     | inital top position in px or %     | dynamic       | string  |
+| yPosition     | inital left position in px or %    | dynamic       | string  |
+| zIndex        | widget order between other widgets | dynamic       | number  |
+| iconImageSrc  | widget icon image path             |               | string  |
+
+### Styling
+
+> you can override the css classes to theme your widget.
+
+| css class          | Description                           |
+|:-------------------|---------------------------------------|
+| widget             | widget active class                   |
+| header             | widget header                         |
+| title              | widget title                          |
+| image              | header icom image                     |
+| widgetMinimized    | active when the widget minimized      |
+| widgetAsIcon       | thw widget icon when minimized        |
+| widgetAsIcon > img | to style the image inside widget icon |
+
+### Small screens
+
+> use media query to override widget styling on small screens
+
+```css
+@media only screen and (max-width:600px) {
+    .widget {
+        bottom: 0px ;
+        width: 100% ;
+    }
+}
+```
