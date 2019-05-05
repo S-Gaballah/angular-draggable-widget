@@ -23,7 +23,7 @@ yarn add angular-draggable-widget
 add to systemjs.config.js
 
 ``` js
-'angular-draggable-widget': 'node_modules/angular-draggable-widget/bundles/draggable-widget.umd.min.js',
+'angular-draggable-widget': 'node_modules/angular-draggable-widget/bundles/angular-draggable-widget.umd.min.js',
 ```
 
 ## Usage
