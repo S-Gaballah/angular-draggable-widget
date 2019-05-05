@@ -1,11 +1,20 @@
 {
   "name": "angular-draggable-widget",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "author": {
     "name": "Sherif Gaballah",
     "email": "shmon3em@gmail.com",
     "url": "https://github.com/S-Gaballah"
   },
+  "keywords": [
+    "Angular",
+    "Widget",
+    "Drag",
+    "Draggable",
+    "Angular Drag",
+    "Angular Widget",
+    "Angulae Draggable Widget"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/S-Gaballah/angular-draggable-widget.git"
