@@ -92,6 +92,12 @@ export class AppModule {}
 
 ### Styling
 
+> do not forget to import material theme to your `style.css`.
+
+```css
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+```
+
 > you can override the css classes to theme your widget.
 
 | css class          | Description                           |
@@ -103,6 +109,7 @@ export class AppModule {}
 | widgetMinimized    | active when the widget minimized      |
 | widgetAsIcon       | thw widget icon when minimized        |
 | widgetAsIcon > img | to style the image inside widget icon |
+
 
 ### Small screens
 
